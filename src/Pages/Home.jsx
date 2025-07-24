@@ -3,7 +3,7 @@ import { fetchRepositories } from "../Services/githubService";
 import RepoCard from "../Components/RepoCard";
 import ReactPaginate from "react-paginate";
 import "./Home.css";
-const ITEMS_PER_PAGE = 6;
+const itemPerPage = 6;
 
 const Home = () => {
   const [repos, setRepos] = useState([]);
@@ -13,9 +13,9 @@ const Home = () => {
 
   const loadRepos = async (page) => {
     setLoading(true);
-    const { items, total_count } = await fetchRepositories(page);
+    const { items, total_count } = await fetchRepositories(page, itemPerPage);
     setRepos(items || []);
-    setPageCount(Math.min(Math.ceil(total_count / ITEMS_PER_PAGE), 100));
+    setPageCount(Math.min(Math.ceil(total_count / itemPerPage), 100));
     setLoading(false);
   };
 

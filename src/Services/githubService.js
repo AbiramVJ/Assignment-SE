@@ -1,9 +1,9 @@
 import axios from 'axios';
+import { environment } from '../Environments/environment';
 
-const BASE_URL = 'https://api.github.com/search/repositories';
-const ITEMS_PER_PAGE = 6; // or whatever you use in the frontend
+const BASE_URL = environment.baseUrl;
 
-export const fetchRepositories = async (page = 1) => {
+export const fetchRepositories = async (page = 1, itemPerPage) => {
   const tenDaysAgo = new Date();
   tenDaysAgo.setDate(tenDaysAgo.getDate() - 10);
   const formattedDate = tenDaysAgo.toISOString().split('T')[0];
@@ -14,7 +14,7 @@ export const fetchRepositories = async (page = 1) => {
       sort: 'stars',
       order: 'desc',
       page,
-      per_page: ITEMS_PER_PAGE,
+      per_page: itemPerPage,
     },
   });
 
