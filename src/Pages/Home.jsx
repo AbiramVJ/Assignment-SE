@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { fetchRepositories } from "../Services/githubService";
-import RepoCard from "../Components/RepoCard";
+import RepoCard from "../Components/RepoCard/RepoCard";
 import ReactPaginate from "react-paginate";
 import "./Home.css";
+
 const itemPerPage = 6;
 
 const Home = () => {
