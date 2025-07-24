@@ -1,8 +1,13 @@
 import './App.css';
-import Home from './Pages/Home';
+import { BrowserRouter as Router } from "react-router-dom";
+import AppRoutes from "./Router/AppRoutes";
 
-function App() {
-  return <Home />;
-}
+const App = () => {
+  return (
+    <Router>
+      <AppRoutes />
+    </Router>
+  );
+};
 
 export default App;
