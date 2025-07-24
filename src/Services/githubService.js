@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { environment } from '../Environments/environment';
+import { Repo, RepoOwner } from '../Models/repoCard';
 
 const BASE_URL = environment.baseUrl;
 
@@ -18,8 +19,13 @@ export const fetchRepositories = async (page = 1, itemPerPage) => {
     },
   });
 
+  const repos = response.data.items.map(item => {
+    const owner = new RepoOwner(item.owner.login, item.owner.avatar_url);
+    return new Repo(item.id, item.name, item.description, item.stargazers_count, owner);
+  });
+
   return {
-    items: response.data.items,
+    items: repos,
     total_count: response.data.total_count,
   };
 };
